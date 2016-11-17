@@ -9,12 +9,15 @@
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #define LED0 PB0
+#define BTN0 PD3
 #include "rf.h"
 #include "uart.h"
 #define BAUD 115200
 #define UBRR F_CPU/16/BAUD-1
 
-char data[] = "HALO HALO\r\n\r\n";
+char data[] = "---RING---";
+volatile uint8_t btnCounter; //Eliminating bouncing
+volatile uint8_t btnTimer;
 int main(void)
 {
 	_delay_ms(100);
@@ -22,6 +25,14 @@ int main(void)
 	// --- LED --- //
 	DDRB = (1<<LED0);
 	PORTB = (1<<LED0);
+
+	// --- BUTTON --- //
+	DDRD &= ~(1<<BTN0);
+	PIND |= (1<<BTN0);
+
+	EIMSK |= (1<<INT1); //Interrupt enable on INT1
+
+	TIMSK0 |= (1<<TOIE1); //TIMER0 overflow interrupt enable
 
 	// --- TIMER --- //
 	TCCR1B = (1<<CS12); // clk/256
@@ -44,11 +55,28 @@ int main(void)
 
     while (1) 
     {
-		RF_TxStart(data,0);
-		_delay_ms(500);
+		if(btnCounter)
+		{
+			TCCR0B &= ~((1<<CS00) | (1<<CS02));
+			btnCounter = 0;
+			btnTimer = 0;
+			RF_TxStart(data, 0);
+		}
     }
 }
 ISR(TIMER1_OVF_vect)
 {
 	PORTB ^= (1<<LED0);
+}
+ISR(TIMER0_OVF_vect)
+{
+	btnCounter++;
+}
+ISR(INT1_vect)
+{
+	if(!btnTimer)
+	{
+		btnTimer = 1;
+		TCCR0B |= (1<<CS02) | (1<<CS00);
+	}
 }
