@@ -11,14 +11,12 @@ c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/..
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_copy_data.o)
                               main.o (__do_copy_data)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_clear_bss.o)
-                              main.o (__do_clear_bss)
+                              rf.o (__do_clear_bss)
 
 Allocating common symbols
 Common symbol       size              file
 
 RF_status           0x1               rf.o
-btnTimer            0x1               main.o
-btnCounter          0x1               main.o
 RF_Data             0x6e              rf.o
 
 Discarded input sections
@@ -28,7 +26,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .data.data     0x00000000        0xe main.o
  .text          0x00000000        0x0 rf.o
  .data          0x00000000        0x0 rf.o
  .bss           0x00000000        0x0 rf.o
@@ -38,19 +35,6 @@ Discarded input sections
                 0x00000000       0xd4 rf.o
  .text.RF_AllStop
                 0x00000000       0x30 rf.o
- .text          0x00000000        0x0 uart.o
- .data          0x00000000        0x0 uart.o
- .bss           0x00000000        0x0 uart.o
- .text.UART_SendChar
-                0x00000000       0x10 uart.o
- .text.UART_SendString
-                0x00000000       0x1e uart.o
- .text.UART_Send16Bit
-                0x00000000       0x14 uart.o
- .text.UART_ReceiveChar
-                0x00000000       0x10 uart.o
- .text.UART_ReceiveString
-                0x00000000       0x74 uart.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
@@ -160,7 +144,6 @@ Address of section .data set to 0x800100
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
 LOAD main.o
 LOAD rf.o
-LOAD uart.o
 START GROUP
 LOAD c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -268,7 +251,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x618
+.text           0x00000000      0x57e
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -336,82 +319,73 @@ END GROUP
                 0x000000a2                __vector_23
                 0x000000a2                __vector_25
                 0x000000a2                __vector_11
+                0x000000a2                __vector_13
                 0x000000a2                __vector_17
                 0x000000a2                __vector_19
                 0x000000a2                __vector_7
                 0x000000a2                __vector_5
                 0x000000a2                __vector_4
                 0x000000a2                __vector_9
+                0x000000a2                __vector_2
                 0x000000a2                __vector_21
                 0x000000a2                __vector_15
                 0x000000a2                __vector_8
                 0x000000a2                __vector_14
                 0x000000a2                __vector_10
+                0x000000a2                __vector_16
                 0x000000a2                __vector_18
                 0x000000a2                __vector_20
                 0x000000a6                . = ALIGN (0x2)
  *(.text.*)
- .text.main     0x000000a6       0x9e main.o
+ .text.main     0x000000a6       0x86 main.o
                 0x000000a6                main
- .text.__vector_13
-                0x00000144       0x24 main.o
-                0x00000144                __vector_13
- .text.__vector_16
-                0x00000168       0x22 main.o
-                0x00000168                __vector_16
- .text.__vector_2
-                0x0000018a       0x2c main.o
-                0x0000018a                __vector_2
  .text.RF_Initialize
-                0x000001b6       0x4c rf.o
-                0x000001b6                RF_Initialize
+                0x0000012c       0x52 rf.o
+                0x0000012c                RF_Initialize
  .text.RF_Transmit
-                0x00000202       0x32 rf.o
-                0x00000202                RF_Transmit
+                0x0000017e       0x32 rf.o
+                0x0000017e                RF_Transmit
  .text.UpdateChecksum
-                0x00000234       0x32 rf.o
-                0x00000234                UpdateChecksum
+                0x000001b0       0x32 rf.o
+                0x000001b0                UpdateChecksum
  .text.RF_SetRange
-                0x00000266        0xc rf.o
-                0x00000266                RF_SetRange
+                0x000001e2        0xc rf.o
+                0x000001e2                RF_SetRange
  .text.RF_SetBandwith
-                0x00000272       0x2e rf.o
-                0x00000272                RF_SetBandwith
+                0x000001ee       0x2e rf.o
+                0x000001ee                RF_SetBandwith
  .text.RF_SetFrequency
-                0x000002a0       0x20 rf.o
-                0x000002a0                RF_SetFrequency
+                0x0000021c       0x20 rf.o
+                0x0000021c                RF_SetFrequency
  .text.RF_SetBaudRate
-                0x000002c0       0x4c rf.o
-                0x000002c0                RF_SetBaudRate
+                0x0000023c       0x4c rf.o
+                0x0000023c                RF_SetBaudRate
  .text.RF_DisableWakeUpTimer
-                0x0000030c        0xa rf.o
-                0x0000030c                RF_DisableWakeUpTimer
+                0x00000288        0xa rf.o
+                0x00000288                RF_DisableWakeUpTimer
  .text.RF_SetPower
-                0x00000316       0x1a rf.o
-                0x00000316                RF_SetPower
+                0x00000292       0x1a rf.o
+                0x00000292                RF_SetPower
  .text.__vector_1
-                0x00000330      0x10c rf.o
-                0x00000330                __vector_1
+                0x000002ac      0x10c rf.o
+                0x000002ac                __vector_1
  .text.RF_TxStart
-                0x0000043c      0x140 rf.o
-                0x0000043c                RF_TxStart
- .text.UART_Initlialise
-                0x0000057c       0x16 uart.o
-                0x0000057c                UART_Initlialise
+                0x000003b8      0x140 rf.o
+                0x000003b8                RF_TxStart
  .text.libgcc.div
-                0x00000592       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000592                __udivmodsi4
+                0x000004f8       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+                0x000004f8                __udivmodsi4
  .text.libgcc.div
-                0x000005d6       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodsi4.o)
-                0x000005d6                __divmodsi4
+                0x0000053c       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodsi4.o)
+                0x0000053c                __divmodsi4
  .text.libgcc.div
-                0x00000604       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_negsi2.o)
-                0x00000604                __negsi2
-                0x00000614                . = ALIGN (0x2)
+                0x0000056a       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_negsi2.o)
+                0x0000056a                __negsi2
+                0x0000057a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000614        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000614                _exit
-                0x00000614                exit
+ .fini9         0x0000057a        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x0000057a                _exit
+                0x0000057a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -430,45 +404,43 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000614        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x0000057a        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000618                _etext = .
+                0x0000057e                _etext = .
 
-.data           0x00800100       0x10 load address 0x00000618
+.data           0x00800100        0xc load address 0x0000057e
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.data     0x00800100        0xb main.o
+                0x00800100                data
  *(.rodata)
  *(.rodata*)
- .rodata.str1.1
-                0x00800100       0x10 main.o
  *(.gnu.linkonce.d*)
-                0x00800110                . = ALIGN (0x2)
-                0x00800110                _edata = .
-                0x00800110                PROVIDE (__data_end, .)
+                0x0080010c                . = ALIGN (0x2)
+ *fill*         0x0080010b        0x1 
+                0x0080010c                _edata = .
+                0x0080010c                PROVIDE (__data_end, .)
 
-.bss            0x00800110       0x72
-                0x00800110                PROVIDE (__bss_start, .)
+.bss            0x0080010c       0x70
+                0x0080010c                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.RF_Index  0x00800110        0x1 rf.o
-                0x00800110                RF_Index
+ .bss.RF_Index  0x0080010c        0x1 rf.o
+                0x0080010c                RF_Index
  *(COMMON)
- COMMON         0x00800111        0x2 main.o
-                0x00800111                btnTimer
-                0x00800112                btnCounter
- COMMON         0x00800113       0x6f rf.o
-                0x00800113                RF_status
-                0x00800114                RF_Data
-                0x00800182                PROVIDE (__bss_end, .)
-                0x00000618                __data_load_start = LOADADDR (.data)
-                0x00000628                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080010d       0x6f rf.o
+                0x0080010d                RF_status
+                0x0080010e                RF_Data
+                0x0080017c                PROVIDE (__bss_end, .)
+                0x0000057e                __data_load_start = LOADADDR (.data)
+                0x0000058a                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800182        0x0
+.noinit         0x0080017c        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800182                _end = .
+                0x0080017c                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -513,7 +485,6 @@ END GROUP
  .comment       0x00000000       0x30 main.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 rf.o
- .comment       0x00000030       0x31 uart.o
 
 .note.gnu.avr.deviceinfo
                 0x00000000       0x40
@@ -535,56 +506,46 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x108
+.debug_aranges  0x00000000       0xa8
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x38 main.o
+                0x00000000       0x20 main.o
  .debug_aranges
-                0x00000038       0x88 rf.o
- .debug_aranges
-                0x000000c0       0x48 uart.o
+                0x00000020       0x88 rf.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xc4b
+.debug_info     0x00000000      0xa40
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x3a2 main.o
- .debug_info    0x000003a2      0x68a rf.o
- .debug_info    0x00000a2c      0x21f uart.o
+ .debug_info    0x00000000      0x3b6 main.o
+ .debug_info    0x000003b6      0x68a rf.o
 
-.debug_abbrev   0x00000000      0x567
+.debug_abbrev   0x00000000      0x45e
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x198 main.o
- .debug_abbrev  0x00000198      0x28a rf.o
- .debug_abbrev  0x00000422      0x145 uart.o
+ .debug_abbrev  0x00000000      0x1d4 main.o
+ .debug_abbrev  0x000001d4      0x28a rf.o
 
-.debug_line     0x00000000      0x92c
+.debug_line     0x00000000      0x6f8
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x212 main.o
- .debug_line    0x00000212      0x573 rf.o
- .debug_line    0x00000785      0x1a7 uart.o
+ .debug_line    0x00000000      0x185 main.o
+ .debug_line    0x00000185      0x573 rf.o
 
-.debug_frame    0x00000000      0x2cc
+.debug_frame    0x00000000      0x1bc
  *(.debug_frame)
- .debug_frame   0x00000000       0x88 main.o
- .debug_frame   0x00000088      0x198 rf.o
- .debug_frame   0x00000220       0xac uart.o
+ .debug_frame   0x00000000       0x24 main.o
+ .debug_frame   0x00000024      0x198 rf.o
 
-.debug_str      0x00000000      0x417
+.debug_str      0x00000000      0x2ec
  *(.debug_str)
- .debug_str     0x00000000      0x27b main.o
-                                0x2b4 (size before relaxing)
- .debug_str     0x0000027b      0x101 rf.o
-                                0x33e (size before relaxing)
- .debug_str     0x0000037c       0x9b uart.o
-                                0x228 (size before relaxing)
+ .debug_str     0x00000000      0x245 main.o
+                                0x285 (size before relaxing)
+ .debug_str     0x00000245       0xa7 rf.o
+                                0x324 (size before relaxing)
 
-.debug_loc      0x00000000      0xa73
+.debug_loc      0x00000000      0x788
  *(.debug_loc)
- .debug_loc     0x00000000       0xc1 main.o
- .debug_loc     0x000000c1      0x788 rf.o
- .debug_loc     0x00000849      0x22a uart.o
+ .debug_loc     0x00000000      0x788 rf.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -604,11 +565,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0xd8
+.debug_ranges   0x00000000       0x88
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x28 main.o
- .debug_ranges  0x00000028       0x78 rf.o
- .debug_ranges  0x000000a0       0x38 uart.o
+ .debug_ranges  0x00000000       0x10 main.o
+ .debug_ranges  0x00000010       0x78 rf.o
 
 .debug_macro
  *(.debug_macro)
