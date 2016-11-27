@@ -4,28 +4,18 @@
  * Created: 26.09.2016 18:35:50
  * Author : malek
  */ 
-#define F_CPU 16000000
+#define F_CPU 8000000
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#define LED0 PB0
+#define PWR	PB1 //If high the ATMEGA will be powered.
 #include "rf.h"
-#include "uart.h"
-#define BAUD 115200
-#define UBRR F_CPU/16/BAUD-1
 
-char data[] = "HALO HALO\r\n\r\n";
+char data[] = "---RING---";
 int main(void)
 {
-	_delay_ms(100);
-
-	// --- LED --- //
-	DDRB = (1<<LED0);
-	PORTB = (1<<LED0);
-
-	// --- TIMER --- //
-	TCCR1B = (1<<CS12); // clk/256
-	TIMSK1 = (1<<TOIE1); //Overflow interrupt enable
+	DDRB = (1<<PWR);
+	PORTB |= (1<<PWR);
 
 	// --- RF --- //
 	RF_Initialize();
@@ -39,16 +29,10 @@ int main(void)
 	RF_Transmit(0x0000);
 	RF_Transmit(0xCC77);
 
-	// --- UART --- //
-	UART_Initlialise(UBRR);
-
-    while (1) 
-    {
-		RF_TxStart(data,0);
-		_delay_ms(500);
-    }
-}
-ISR(TIMER1_OVF_vect)
-{
-	PORTB ^= (1<<LED0);
+	// --- TRANSMITTING RING MESSAGE --- //
+	RF_TxStart(data,0);
+	_delay_ms(50);
+	while(RF_status.Tx != 0);
+	_delay_ms(500);
+	PORTB &= ~(1<<PWR);
 }
