@@ -18,6 +18,8 @@
 
 char data[120]; //Data received by RF12
 char crcErrorMsg[] = "CRC(CHECKSUM) ERROR";
+char conntestMsg[] = "conntest";
+uint8_t connCounter; //This will be used to sent connection test message (conntest
 int main(void)
 {
 	_delay_ms(100);
@@ -51,6 +53,12 @@ int main(void)
 
 	while (1)
 	{
+		if(connCounter >= 13) //Approximately a minute
+		{
+			ESP_Send(conntestMsg,0);
+			connCounter = 0;
+		}
+
 	// --- RF12 RECEIVING DATA --- //
 #if RF_UseIRQ == 1
 	if(!(RF_status.status & 0x07))
@@ -86,4 +94,5 @@ int main(void)
 ISR(TIMER1_OVF_vect) //4.5s on 14MHz clock
 {
 	PORTB ^= (1<<LED0);
+	connCounter++;	
 }
