@@ -3,7 +3,6 @@
 #include <util/delay.h>
 #include <stdlib.h>
 #include <string.h>
-#include "uart.h"
 
 #include "rf.h"
 /************************************************************************/
@@ -329,7 +328,6 @@ void RF_AllStop(void)
 void RF_Ready(void)
 {
 	RF_PORT &= ~(1<<CS);
-	UART_SendChar('_');
 	while(!(RF_PIN & (1<<SDO))); //Do nothing until FIFO is ready
 }
 void RF_TxData(char* data, uint8_t size)

@@ -7,7 +7,7 @@
 /*			MOSI				|				SDI						*/
 /*			SS					|				nSEL					*/
 /*			INT(0/1/2)			|				nIRQ					*/
-//INT0 / INT1 / INT2 are the interrupt pins if interrupts are being used//
+//INT0 / INT1 / INT2 are the interrupt pins if interrupts are used      //
 
 /*			RF					|			DESCRIPTION					*/
 /*______________________________|_______________________________________*/
