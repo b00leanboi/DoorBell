@@ -333,7 +333,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xf12
+.text           0x00000000      0xf1c
  *(.vectors)
  .vectors       0x00000000       0x68 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.0.106/gcc/dev/atmega328p/avr5/crtatmega328p.o
                 0x00000000                __vector_default
@@ -428,97 +428,97 @@ END GROUP
  .text.ESP_Send
                 0x0000025e       0xcc ESP8266.o
                 0x0000025e                ESP_Send
- .text.main     0x0000032a       0xae main.o
+ .text.main     0x0000032a       0xb8 main.o
                 0x0000032a                main
  .text.__vector_13
-                0x000003d8       0x24 main.o
-                0x000003d8                __vector_13
+                0x000003e2       0x24 main.o
+                0x000003e2                __vector_13
  .text.RF_Initialize
-                0x000003fc       0x52 rf.o
-                0x000003fc                RF_Initialize
+                0x00000406       0x52 rf.o
+                0x00000406                RF_Initialize
  .text.RF_Transmit
-                0x0000044e       0x32 rf.o
-                0x0000044e                RF_Transmit
+                0x00000458       0x32 rf.o
+                0x00000458                RF_Transmit
  .text.UpdateChecksum
-                0x00000480       0x32 rf.o
-                0x00000480                UpdateChecksum
+                0x0000048a       0x32 rf.o
+                0x0000048a                UpdateChecksum
  .text.RF_SetRange
-                0x000004b2        0xc rf.o
-                0x000004b2                RF_SetRange
+                0x000004bc        0xc rf.o
+                0x000004bc                RF_SetRange
  .text.RF_SetBandwith
-                0x000004be       0x2e rf.o
-                0x000004be                RF_SetBandwith
+                0x000004c8       0x2e rf.o
+                0x000004c8                RF_SetBandwith
  .text.RF_SetFrequency
-                0x000004ec       0x20 rf.o
-                0x000004ec                RF_SetFrequency
+                0x000004f6       0x20 rf.o
+                0x000004f6                RF_SetFrequency
  .text.RF_SetBaudRate
-                0x0000050c       0x4c rf.o
-                0x0000050c                RF_SetBaudRate
+                0x00000516       0x4c rf.o
+                0x00000516                RF_SetBaudRate
  .text.RF_DisableWakeUpTimer
-                0x00000558        0xa rf.o
-                0x00000558                RF_DisableWakeUpTimer
+                0x00000562        0xa rf.o
+                0x00000562                RF_DisableWakeUpTimer
  .text.RF_SetPower
-                0x00000562       0x1a rf.o
-                0x00000562                RF_SetPower
+                0x0000056c       0x1a rf.o
+                0x0000056c                RF_SetPower
  .text.__vector_1
-                0x0000057c      0x10c rf.o
-                0x0000057c                __vector_1
+                0x00000586      0x10c rf.o
+                0x00000586                __vector_1
  .text.RF_RxStart
-                0x00000688       0x4e rf.o
-                0x00000688                RF_RxStart
+                0x00000692       0x4e rf.o
+                0x00000692                RF_RxStart
  .text.RF_RxFinish
-                0x000006d6       0xd4 rf.o
-                0x000006d6                RF_RxFinish
+                0x000006e0       0xd4 rf.o
+                0x000006e0                RF_RxFinish
  .text.UART_Initlialise
-                0x000007aa       0x16 uart.o
-                0x000007aa                UART_Initlialise
+                0x000007b4       0x16 uart.o
+                0x000007b4                UART_Initlialise
  .text.UART_SendChar
-                0x000007c0       0x10 uart.o
-                0x000007c0                UART_SendChar
+                0x000007ca       0x10 uart.o
+                0x000007ca                UART_SendChar
  .text.UART_SendString
-                0x000007d0       0x1e uart.o
-                0x000007d0                UART_SendString
+                0x000007da       0x1e uart.o
+                0x000007da                UART_SendString
  .text.__vector_18
-                0x000007ee       0xee uart.o
-                0x000007ee                __vector_18
+                0x000007f8       0xee uart.o
+                0x000007f8                __vector_18
  .text.libgcc.div
-                0x000008dc       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
-                0x000008dc                __udivmodsi4
+                0x000008e6       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_udivmodsi4.o)
+                0x000008e6                __udivmodsi4
  .text.libgcc.div
-                0x00000920       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodsi4.o)
-                0x00000920                __divmodsi4
+                0x0000092a       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_divmodsi4.o)
+                0x0000092a                __divmodsi4
  .text.libgcc.div
-                0x0000094e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_negsi2.o)
-                0x0000094e                __negsi2
+                0x00000958       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_negsi2.o)
+                0x00000958                __negsi2
  .text.avr-libc
-                0x0000095e       0x46 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
-                0x0000095e                sprintf
+                0x00000968       0x46 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(sprintf.o)
+                0x00000968                sprintf
  .text.avr-libc
-                0x000009a4      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
-                0x000009a4                vfprintf
+                0x000009ae      0x3a4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(vfprintf_std.o)
+                0x000009ae                vfprintf
  .text.avr-libc
-                0x00000d48       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
-                0x00000d48                strnlen_P
+                0x00000d52       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strnlen_P.o)
+                0x00000d52                strnlen_P
  .text.avr-libc
-                0x00000d5e       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
-                0x00000d5e                strnlen
+                0x00000d68       0x16 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(strnlen.o)
+                0x00000d68                strnlen
  .text.avr-libc
-                0x00000d74       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(fputc.o)
-                0x00000d74                fputc
+                0x00000d7e       0x70 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(fputc.o)
+                0x00000d7e                fputc
  .text.avr-libc
-                0x00000de4       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
-                0x00000de4                __ultoa_invert
+                0x00000dee       0xbc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/../../../../avr/lib/avr5\libc.a(ultoa_invert.o)
+                0x00000dee                __ultoa_invert
  .text.libgcc.prologue
-                0x00000ea0       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_prologue.o)
-                0x00000ea0                __prologue_saves__
+                0x00000eaa       0x38 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_prologue.o)
+                0x00000eaa                __prologue_saves__
  .text.libgcc.prologue
-                0x00000ed8       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_epilogue.o)
-                0x00000ed8                __epilogue_restores__
-                0x00000f0e                . = ALIGN (0x2)
+                0x00000ee2       0x36 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_epilogue.o)
+                0x00000ee2                __epilogue_restores__
+                0x00000f18                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000f0e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
-                0x00000f0e                _exit
-                0x00000f0e                exit
+ .fini9         0x00000f18        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+                0x00000f18                _exit
+                0x00000f18                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -537,55 +537,56 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000f0e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000f18        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.9.2/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000f12                _etext = .
+                0x00000f1c                _etext = .
 
-.data           0x00800100       0xb2 load address 0x00000f12
+.data           0x00800100       0xbc load address 0x00000f1c
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.crcErrorMsg
+                0x00800100       0x14 main.o
+                0x00800100                crcErrorMsg
  *(.rodata)
  *(.rodata*)
  .rodata.str1.1
-                0x00800100       0xa8 ESP8266.o
+                0x00800114       0xa8 ESP8266.o
                                  0xb0 (size before relaxing)
- .rodata.str1.1
-                0x008001a8        0xa main.o
  *(.gnu.linkonce.d*)
-                0x008001b2                . = ALIGN (0x2)
-                0x008001b2                _edata = .
-                0x008001b2                PROVIDE (__data_end, .)
+                0x008001bc                . = ALIGN (0x2)
+                0x008001bc                _edata = .
+                0x008001bc                PROVIDE (__data_end, .)
 
-.bss            0x008001b2      0x14f
-                0x008001b2                PROVIDE (__bss_start, .)
+.bss            0x008001bc      0x14f
+                0x008001bc                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.RF_Index  0x008001b2        0x1 rf.o
-                0x008001b2                RF_Index
+ .bss.RF_Index  0x008001bc        0x1 rf.o
+                0x008001bc                RF_Index
  .bss.bufferIndex
-                0x008001b3        0x1 uart.o
-                0x008001b3                bufferIndex
+                0x008001bd        0x1 uart.o
+                0x008001bd                bufferIndex
  *(COMMON)
- COMMON         0x008001b4        0x2 ESP8266.o
-                0x008001b4                ESP_Response
-                0x008001b5                ESP_Connections
- COMMON         0x008001b6       0x78 main.o
-                0x008001b6                data
- COMMON         0x0080022e       0x6f rf.o
-                0x0080022e                RF_status
-                0x0080022f                RF_Data
- COMMON         0x0080029d       0x64 uart.o
-                0x0080029d                buffer
-                0x00800301                PROVIDE (__bss_end, .)
-                0x00000f12                __data_load_start = LOADADDR (.data)
-                0x00000fc4                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x008001be        0x2 ESP8266.o
+                0x008001be                ESP_Response
+                0x008001bf                ESP_Connections
+ COMMON         0x008001c0       0x78 main.o
+                0x008001c0                data
+ COMMON         0x00800238       0x6f rf.o
+                0x00800238                RF_status
+                0x00800239                RF_Data
+ COMMON         0x008002a7       0x64 uart.o
+                0x008002a7                buffer
+                0x0080030b                PROVIDE (__bss_end, .)
+                0x00000f1c                __data_load_start = LOADADDR (.data)
+                0x00000fd8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800301        0x0
+.noinit         0x0080030b        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800301                _end = .
+                0x0080030b                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -671,26 +672,26 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x1414
+.debug_info     0x00000000     0x142c
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x706 ESP8266.o
- .debug_info    0x00000706      0x471 main.o
- .debug_info    0x00000b77      0x68c rf.o
- .debug_info    0x00001203      0x211 uart.o
+ .debug_info    0x00000706      0x489 main.o
+ .debug_info    0x00000b8f      0x68c rf.o
+ .debug_info    0x0000121b      0x211 uart.o
 
-.debug_abbrev   0x00000000      0x882
+.debug_abbrev   0x00000000      0x884
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x28b ESP8266.o
- .debug_abbrev  0x0000028b      0x21f main.o
- .debug_abbrev  0x000004aa      0x28a rf.o
- .debug_abbrev  0x00000734      0x14e uart.o
+ .debug_abbrev  0x0000028b      0x221 main.o
+ .debug_abbrev  0x000004ac      0x28a rf.o
+ .debug_abbrev  0x00000736      0x14e uart.o
 
-.debug_line     0x00000000      0xd64
+.debug_line     0x00000000      0xd6a
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x40c ESP8266.o
- .debug_line    0x0000040c      0x1d9 main.o
- .debug_line    0x000005e5      0x573 rf.o
- .debug_line    0x00000b58      0x20c uart.o
+ .debug_line    0x0000040c      0x1df main.o
+ .debug_line    0x000005eb      0x573 rf.o
+ .debug_line    0x00000b5e      0x20c uart.o
 
 .debug_frame    0x00000000      0x340
  *(.debug_frame)
@@ -699,15 +700,15 @@ END GROUP
  .debug_frame   0x0000011c      0x198 rf.o
  .debug_frame   0x000002b4       0x8c uart.o
 
-.debug_str      0x00000000      0x49a
+.debug_str      0x00000000      0x4a6
  *(.debug_str)
  .debug_str     0x00000000      0x271 ESP8266.o
                                 0x2aa (size before relaxing)
- .debug_str     0x00000271       0xfa main.o
-                                0x2e0 (size before relaxing)
- .debug_str     0x0000036b       0xd8 rf.o
+ .debug_str     0x00000271      0x106 main.o
+                                0x2dc (size before relaxing)
+ .debug_str     0x00000377       0xd8 rf.o
                                 0x338 (size before relaxing)
- .debug_str     0x00000443       0x57 uart.o
+ .debug_str     0x0000044f       0x57 uart.o
                                 0x213 (size before relaxing)
 
 .debug_loc      0x00000000      0xab8
