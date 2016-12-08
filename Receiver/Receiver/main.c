@@ -22,7 +22,7 @@ char conntestMsg[] = "conntest";
 uint8_t connCounter; //This will be used to sent connection test message (conntest
 int main(void)
 {
-	_delay_ms(100);
+	_delay_ms(1000); //Waiting until ESP is ready
 	// --- LED --- //
 	DDRB = (1<<LED0);
 
@@ -51,6 +51,7 @@ int main(void)
 	// --- SLEEP AND POWER MANAGEMENT --- //
 	PRR = (1<<PRTWI) | (1<<PRTIM2) | (1<<PRADC);
 
+	ESP_Send(conntestMsg,0);
 	while (1)
 	{
 		if(connCounter >= 13) //Approximately a minute
