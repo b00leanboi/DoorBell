@@ -101,11 +101,13 @@ uint8_t ESP_Initialize(void)
 	else
 		ESP_Response.OK = 0;
 
+	#ifdef ESP_APMAC
 	UART_SendString("AT+CIPAPMAC=\"");
 	UART_SendString(ESP_APMAC);
 	UART_SendString("\"\r\n");
 	WaitForResponse();
 	ResetResponse();
+	#endif
 
 #endif /* ESP_WIFIMODE == 2 || ESP_WIFIMODE == 3 */
 #if ESP_CONNECTIONTYPE == 1 //UDP
@@ -118,15 +120,7 @@ uint8_t ESP_Initialize(void)
 	UART_SendString(ESP_PORT);
 	UART_SendString("\r\n");
 	WaitForResponse();
-	if(ESP_Response.ERROR)
-	{
-		ResetResponse();
-		return 1;
-	}
-	else
-	{	
-		ResetResponse();
-	}
+	ResetResponse();
 #else
 	UART_SendString("AT+CIPDINFO=1\r\n");
 	WaitForResponse();

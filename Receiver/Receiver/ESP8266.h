@@ -100,18 +100,18 @@
 	*/
 	#define ESP_SSID "ESP8266-AP"
 	#define ESP_PASSWORD "2z5lo23c0"
-	#define ESP_CHANNELID 5
+	#define ESP_CHANNELID "5"
 	/*
 	 * ESP_ENCRYPTION 0 - Open
-	 * ESP_ENCRYPTION 1 - WPA_PSK
-	 * ESP_ENCRYPTION 2 - WPA2_PSK
-	 * ESP_ENCRYPTION 3 - WPA_WPA2_PSK
+	 * ESP_ENCRYPTION 2 - WPA_PSK
+	 * ESP_ENCRYPTION 3 - WPA2_PSK
+	 * ESP_ENCRYPTION 4 - WPA_WPA2_PSK
 	*/
-	#define ESP_ENCRYPTION 3
+	#define ESP_ENCRYPTION "4"
 	/* IP address of ESP access point */
 	#define ESP_APIP "192.168.1.80"
 	/* MAC address of ESP access point */
-	#define ESP_APMAC "1a:fe:34:a4:35:42"
+	#define ESP_APMAC "1A:FE:34:2E:FD:D1"
 #endif /* ESP_WIFIMODE 1 || ESP_WIFIMODE 2 */
 
 /*
