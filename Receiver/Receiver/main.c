@@ -17,9 +17,10 @@
 #define UBRR F_CPU/16/BAUD-1
 
 char data[120]; //Data received by RF12
+char crcErrorMsg[] = "CRC(CHECKSUM) ERROR";
 int main(void)
 {
-	_delay_ms(1000);
+	_delay_ms(100);
 	// --- LED --- //
 	DDRB = (1<<LED0);
 
@@ -43,14 +44,13 @@ int main(void)
 
 	// --- UART --- //
 	UART_Initlialise(UBRR);
-	_delay_ms(500);
 	ESP_Initialize();
-	UART_SendString("AT+CIFSR\r\n");
-	WaitForResponse();
+
+	// --- SLEEP AND POWER MANAGEMENT --- //
+	PRR = (1<<PRTWI) | (1<<PRTIM2) | (1<<PRADC);
+
 	while (1)
 	{
-		ESP_Send("Halo","0");
-		_delay_ms(10000);
 	// --- RF12 RECEIVING DATA --- //
 #if RF_UseIRQ == 1
 	if(!(RF_status.status & 0x07))
@@ -63,22 +63,22 @@ int main(void)
 
 		if(data > 0 && ret < 254)
 		{
-			UART_SendString(data);
+			ESP_Send(data,0);
 			data[16] = 0;
 		}
 		else if(!ret)
 		{
-			UART_SendString("CRC ERROR");
+			ESP_Send(crcErrorMsg, 0);
 		}
 	}
 #else
 	ret = RF_RxData(data);
 	if(ret)
 	{
-		UART_SendString(data);
+		ESP_Send(data,0);
 	}
 	else
-		UART_SendString("CRC ERROR");
+		ESP_Send(crcErrorMsg, 0);
 #endif
 	}
 }

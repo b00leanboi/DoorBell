@@ -164,9 +164,10 @@ void WaitForResponse(void)
 /************************************************************************/
 uint8_t ESP_Send(char* data, char* connectionID)
 {
+#if ESP_CONNECTIONTYPE == 2
 	if(ESP_Connections == 0) //If there are no connections...
 		return 1; //Return 1 - error
-
+#endif
 	//Length of data
 	uint16_t size = strlen(data);
 	char length[4];
