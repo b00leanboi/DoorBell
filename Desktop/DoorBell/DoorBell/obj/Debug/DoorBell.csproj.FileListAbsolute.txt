@@ -1,0 +1,11 @@
+c:\users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\bin\Debug\DoorBell.exe.config
+c:\users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.csprojResolveAssemblyReference.cache
+c:\users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.Properties.Resources.resources
+c:\users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.csproj.GenerateResource.Cache
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\Interop.WMPLib.dll
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.csproj.ResolveComReference.cache
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\bin\Debug\DoorBell.exe
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\bin\Debug\DoorBell.pdb
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.exe
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.pdb
+C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.MainWindow.resources
