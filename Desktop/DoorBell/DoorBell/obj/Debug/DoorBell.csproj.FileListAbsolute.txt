@@ -9,3 +9,14 @@ C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\bin\Debug
 C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.exe
 C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.pdb
 C:\Users\malek\documents\visual studio 2015\Projects\DoorBell\DoorBell\obj\Debug\DoorBell.MainWindow.resources
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\bin\Debug\DoorBell.exe.config
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\Interop.WMPLib.dll
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.csproj.ResolveComReference.cache
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.exe
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.pdb
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\bin\Debug\DoorBell.exe
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\bin\Debug\DoorBell.pdb
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.csprojResolveAssemblyReference.cache
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.MainWindow.resources
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.Properties.Resources.resources
+D:\GIT\DoorBell\Desktop\DoorBell\DoorBell\obj\Debug\DoorBell.csproj.GenerateResource.Cache

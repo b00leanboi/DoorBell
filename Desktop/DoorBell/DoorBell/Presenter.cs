@@ -26,6 +26,7 @@ namespace DoorBell
             if(firstRun)
             {
                 GetSettings();
+                mainWindow.statusLabelText = "N/A";
             }
             else
             {
@@ -64,6 +65,8 @@ namespace DoorBell
         {
             return string.Format("tries ({0} min)", (mainWindow.checkConnectionTime * mainWindow.triesNumber));
         }
+        #endregion
+
         #region Events
         private void AddMethodsToUDPEvent()
         {
@@ -85,6 +88,9 @@ namespace DoorBell
             mainWindow.playErrorValueChanged += settings.ChangePlayError;
             mainWindow.portChanged += settings.ChangePort;
 
+            mainWindow.notifyIconDoubleClicked += SetWindowStateToNormal;
+
+            mainWindow.windowResized += WindowStateChanged;
             mainWindow.windowClosing += StopUDP;
         }
         private void AddMethodsToConnectionsEvents()
@@ -114,14 +120,18 @@ namespace DoorBell
             soundControl.errorSoundPathChanged += ChangeErrorPathInSettings;
         }
         #endregion
-        #endregion
 
         #region Settings
         public void SaveSettings(object sender, EventArgs a)
         {
             bool getNewPath = shouldGetNewPath();
             if (SettingsOperations.SaveSettings(settings, getNewPath))
+            {
                 SetUnsavedSettings(false);
+                StartUDP();
+                StartTimer(settings.checkConnection * 60 * 1000, settings.triesNumber);
+            }
+                
         }
         private bool shouldGetNewPath()
         {
@@ -238,7 +248,11 @@ namespace DoorBell
         public void SetRingIcon(object o, ConnectionArgs a)
         {
             if(a.newState)
+            {
                 ThreadSafe.ChangeIcon((Form)mainWindow, Properties.Resources.notifyIconBlue);
+                mainWindow.notifyIcon = Properties.Resources.notifyIconBlue;
+            }
+                
         }
 
         public void SetErrorIcon(object o, ConnectionArgs a)
@@ -246,19 +260,30 @@ namespace DoorBell
             if(a.property == ConnectionStatus.Property.alive)
             {
                 if (!a.newState)
+                {
                     ThreadSafe.ChangeIcon((Form)mainWindow, Properties.Resources.notifyIconRed);
+                    mainWindow.notifyIcon = Properties.Resources.notifyIconRed;
+                }
+                    
             }
             else if(a.property == ConnectionStatus.Property.error)
             {
                 if(a.newState)
+                {
                     ThreadSafe.ChangeIcon((Form)mainWindow, Properties.Resources.notifyIconRed);
+                    mainWindow.notifyIcon = Properties.Resources.notifyIconRed;
+                }
+                    
             }
         }
 
         public void SetAliveIcon(object o, ConnectionArgs a)
         {
             if(a.property == ConnectionStatus.Property.alive && a.newState)
+            {
                 ThreadSafe.ChangeIcon((Form)mainWindow, Properties.Resources.notifyIconGreen);
+                mainWindow.notifyIcon = Properties.Resources.notifyIconGreen;
+            }           
         }
 
         public void SetRingLabel(object o, ConnectionArgs a)
@@ -348,6 +373,30 @@ namespace DoorBell
         {
             mainWindow.triesLabelText = string.Format("({0} minutes)", settings.triesNumber * settings.checkConnection);
         }
+
+        public void SetWindowStateToNormal(object o, EventArgs a)
+        {
+            mainWindow.ShowMainWindow();
+            mainWindow.windowState = FormWindowState.Normal;
+        }
+
+        public void WindowStateChanged(object o, FormResizeArg a)
+        {
+            if(a.windowState == FormWindowState.Minimized)
+            {
+                mainWindow.notifyIconVisible = true;
+                mainWindow.HideMainWindow();
+                if (firstRun)
+                {
+                    firstRun = false;
+                    mainWindow.ShowBalloonTip(2000);
+                }
+            }
+            else if(a.windowState == FormWindowState.Normal)
+            {
+                mainWindow.notifyIconVisible = false;
+            }
+        }
         #endregion
 
         #region Timer
@@ -380,6 +429,6 @@ namespace DoorBell
                 ConnectionStatus.Set(ConnectionStatus.Property.error, true, ConnectionStatus.ChangeReasons.errorReceived, message);
             else
                 ConnectionStatus.Set(ConnectionStatus.Property.alive, true, ConnectionStatus.ChangeReasons.messageReceived, message);
-        }      
+        }
     }
 }

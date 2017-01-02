@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.statLbl = new System.Windows.Forms.Label();
             this.statusPicture = new System.Windows.Forms.PictureBox();
@@ -50,6 +51,7 @@
             this.checkConnLabelA = new System.Windows.Forms.Label();
             this.logGroupBox = new System.Windows.Forms.GroupBox();
             this.logTextBox = new System.Windows.Forms.RichTextBox();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.statusPicture)).BeginInit();
             this.optionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portNUD)).BeginInit();
@@ -305,6 +307,15 @@
             this.logTextBox.TabIndex = 0;
             this.logTextBox.Text = "";
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+    "xt time";
+            this.notifyIcon.BalloonTipTitle = "Information";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "DoorBell";
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,6 +329,7 @@
             this.Name = "MainWindow";
             this.Text = "DoorBell";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
+            this.Resize += new System.EventHandler(this.MainWindow_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.statusPicture)).EndInit();
             this.optionsGroupBox.ResumeLayout(false);
             this.optionsGroupBox.PerformLayout();
@@ -353,6 +365,7 @@
         private System.Windows.Forms.GroupBox logGroupBox;
         private System.Windows.Forms.Button saveSettingsBtn;
         private System.Windows.Forms.RichTextBox logTextBox;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

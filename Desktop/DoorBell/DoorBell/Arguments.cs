@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using static DoorBell.ConnectionStatus;
 
 namespace DoorBell
@@ -52,6 +53,15 @@ namespace DoorBell
             this.newState = newState;
             this.changeReason = changeReason;
             this.message = message;
+        }
+    }
+    public class FormResizeArg : EventArgs
+    {
+        public FormWindowState windowState;
+
+        public FormResizeArg(FormWindowState windowState)
+        {
+            this.windowState = windowState;
         }
     }
 }

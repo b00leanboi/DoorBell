@@ -173,6 +173,44 @@ namespace DoorBell
                 saveSettingsBtn.Enabled = value;
             }
         }
+
+        public FormWindowState windowState
+        {
+            get
+            {
+                return this.WindowState;
+            }
+            set
+            {
+                this.WindowState = value;
+            }
+        }
+
+        Icon IView.notifyIcon
+        {
+            get
+            {
+                return notifyIcon.Icon;
+            }
+
+            set
+            {
+                notifyIcon.Icon = value;
+            }
+        }
+
+        public bool notifyIconVisible
+        {
+            get
+            {
+                return notifyIcon.Visible;
+            }
+
+            set
+            {
+                notifyIcon.Visible = value;
+            }
+        }
         #endregion
         #region Events
         public event EventHandler ringSoundButtonClicked;
@@ -186,7 +224,11 @@ namespace DoorBell
         public event EventHandler<BoolValueArg> playErrorValueChanged;
         public event EventHandler<IntValueArg> portChanged;
 
+        public event EventHandler notifyIconDoubleClicked;
+
+        public event EventHandler<FormResizeArg> windowResized;
         public event EventHandler windowClosing;
+
         #endregion
         public MainWindow()
         {
@@ -194,6 +236,15 @@ namespace DoorBell
             presenter = new Presenter(this);
         }
         #region FormMethods
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="timeout">Timeout is in ms</param>
+        public void ShowBalloonTip(int timeout)
+        {
+            notifyIcon.ShowBalloonTip(timeout);
+        }
+
         private void ringSoundButton_Click(object sender, EventArgs e)
         {
             ringSoundButtonClicked.Invoke(this, EventArgs.Empty);
@@ -239,9 +290,29 @@ namespace DoorBell
             settingsChanged.Invoke(this, EventArgs.Empty);
         }
 
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            notifyIconDoubleClicked.Invoke(this, EventArgs.Empty);
+        }
+
+        private void MainWindow_Resize(object sender, EventArgs e)
+        {
+            windowResized.Invoke(this, new FormResizeArg(windowState));
+        }
+
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             windowClosing.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ShowMainWindow()
+        {
+            this.Show();
+        }
+
+        public void HideMainWindow()
+        {
+            this.Hide();
         }
         #endregion
     }

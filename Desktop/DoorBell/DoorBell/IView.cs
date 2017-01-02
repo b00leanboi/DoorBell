@@ -20,6 +20,9 @@ namespace DoorBell
         PictureBox statusPictureControl { get; }
         string saveButtonText { get; set; }
         bool saveButtonEnabled { get; set; }
+        FormWindowState windowState { get; set; }
+        Icon notifyIcon { get; set; }
+        bool notifyIconVisible { get; set; }
 
         event EventHandler ringSoundButtonClicked;
         event EventHandler errorSoundButtonClicked;
@@ -32,6 +35,13 @@ namespace DoorBell
         event EventHandler<BoolValueArg> playErrorValueChanged;
         event EventHandler<IntValueArg> portChanged;
 
+        event EventHandler notifyIconDoubleClicked;
+
+        event EventHandler<FormResizeArg> windowResized;
         event EventHandler windowClosing;
+
+        void ShowMainWindow();
+        void HideMainWindow();
+        void ShowBalloonTip(int timeout);
     }
 }

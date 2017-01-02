@@ -41,6 +41,8 @@ namespace DoorBell
         void ChangePlayDeadChecked();
         void ChangePort();
         void ChangeTriesNumberLabel();
+        void SetWindowStateToNormal(object o, EventArgs a);
+        void WindowStateChanged(object o, FormResizeArg a);
         #endregion
 
     }
