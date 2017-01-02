@@ -310,6 +310,7 @@
             // notifyIcon
             // 
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.notifyIcon.BalloonTipText = "The application will continue running minimised.\r\nIt will also start minimised ne" +
     "xt time";
             this.notifyIcon.BalloonTipTitle = "Information";
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
