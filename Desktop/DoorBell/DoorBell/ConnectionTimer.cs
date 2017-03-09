@@ -9,6 +9,7 @@ namespace DoorBell
         private Timer timer;
         private byte checksMade = 0;
         private byte checksToMake;
+        private bool errorPlayed;
 
         public void StartTimer(double timerInteval, byte checksToMake)
         {
@@ -39,12 +40,25 @@ namespace DoorBell
         private void CheckConnection(object sender, EventArgs e)
         {
             if (!ConnectionStatus.alive)
+            {
                 if (checksMade >= (checksToMake - 1))
-                    ConnectionStatus.Set(Property.alive, false, ChangeReasons.timeout);
+                {
+                    if (!errorPlayed)
+                    {
+                        ConnectionStatus.Set(Property.alive, false, ChangeReasons.timeout);
+                        errorPlayed = true;
+                    }
+                }
                 else
+                {
                     checksMade++;
+                }
+            }
             else
+            {
+                errorPlayed = false;
                 checksMade = 0;
+            }
             ConnectionStatus.Set(Property.alive, false, ChangeReasons.timerCheck);
         }
     }
