@@ -65,6 +65,7 @@
     <Compile Include="SettingsOperations.cs" />
     <Compile Include="SoundControl.cs" />
     <Compile Include="ConnectionTimer.cs" />
+    <Compile Include="StartupManager.cs" />
     <Compile Include="ThreadSafe.cs" />
     <Compile Include="UDP.cs" />
     <EmbeddedResource Include="MainWindow.resx">

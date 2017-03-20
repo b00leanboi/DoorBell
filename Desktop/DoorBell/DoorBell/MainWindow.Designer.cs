@@ -52,6 +52,10 @@
             this.logGroupBox = new System.Windows.Forms.GroupBox();
             this.logTextBox = new System.Windows.Forms.RichTextBox();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.startupLabel = new System.Windows.Forms.Label();
+            this.startupCurrentRadio = new System.Windows.Forms.RadioButton();
+            this.startupAllRadio = new System.Windows.Forms.RadioButton();
+            this.startupOffRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.statusPicture)).BeginInit();
             this.optionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.portNUD)).BeginInit();
@@ -82,6 +86,10 @@
             // 
             // optionsGroupBox
             // 
+            this.optionsGroupBox.Controls.Add(this.startupOffRadio);
+            this.optionsGroupBox.Controls.Add(this.startupAllRadio);
+            this.optionsGroupBox.Controls.Add(this.startupCurrentRadio);
+            this.optionsGroupBox.Controls.Add(this.startupLabel);
             this.optionsGroupBox.Controls.Add(this.saveSettingsBtn);
             this.optionsGroupBox.Controls.Add(this.portNUD);
             this.optionsGroupBox.Controls.Add(this.portLabel);
@@ -100,14 +108,14 @@
             this.optionsGroupBox.Controls.Add(this.checkConnLabelA);
             this.optionsGroupBox.Location = new System.Drawing.Point(17, 44);
             this.optionsGroupBox.Name = "optionsGroupBox";
-            this.optionsGroupBox.Size = new System.Drawing.Size(371, 245);
+            this.optionsGroupBox.Size = new System.Drawing.Size(371, 275);
             this.optionsGroupBox.TabIndex = 2;
             this.optionsGroupBox.TabStop = false;
             this.optionsGroupBox.Text = "OPTIONS";
             // 
             // saveSettingsBtn
             // 
-            this.saveSettingsBtn.Location = new System.Drawing.Point(275, 216);
+            this.saveSettingsBtn.Location = new System.Drawing.Point(275, 246);
             this.saveSettingsBtn.Name = "saveSettingsBtn";
             this.saveSettingsBtn.Size = new System.Drawing.Size(90, 23);
             this.saveSettingsBtn.TabIndex = 15;
@@ -291,7 +299,7 @@
             // logGroupBox
             // 
             this.logGroupBox.Controls.Add(this.logTextBox);
-            this.logGroupBox.Location = new System.Drawing.Point(17, 295);
+            this.logGroupBox.Location = new System.Drawing.Point(17, 325);
             this.logGroupBox.Name = "logGroupBox";
             this.logGroupBox.Size = new System.Drawing.Size(371, 223);
             this.logGroupBox.TabIndex = 3;
@@ -317,11 +325,55 @@
             this.notifyIcon.Text = "DoorBell";
             this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
             // 
+            // startupLabel
+            // 
+            this.startupLabel.AutoSize = true;
+            this.startupLabel.Location = new System.Drawing.Point(36, 186);
+            this.startupLabel.Name = "startupLabel";
+            this.startupLabel.Size = new System.Drawing.Size(104, 13);
+            this.startupLabel.TabIndex = 17;
+            this.startupLabel.Text = "Autostart on Startup:";
+            // 
+            // startupCurrentRadio
+            // 
+            this.startupCurrentRadio.AutoSize = true;
+            this.startupCurrentRadio.Location = new System.Drawing.Point(190, 184);
+            this.startupCurrentRadio.Name = "startupCurrentRadio";
+            this.startupCurrentRadio.Size = new System.Drawing.Size(84, 17);
+            this.startupCurrentRadio.TabIndex = 18;
+            this.startupCurrentRadio.Text = "Current User";
+            this.startupCurrentRadio.UseVisualStyleBackColor = true;
+            this.startupCurrentRadio.CheckedChanged += new System.EventHandler(this.startupCurrentRadio_CheckedChanged);
+            // 
+            // startupAllRadio
+            // 
+            this.startupAllRadio.AutoSize = true;
+            this.startupAllRadio.Location = new System.Drawing.Point(275, 184);
+            this.startupAllRadio.Name = "startupAllRadio";
+            this.startupAllRadio.Size = new System.Drawing.Size(64, 17);
+            this.startupAllRadio.TabIndex = 19;
+            this.startupAllRadio.Text = "All users";
+            this.startupAllRadio.UseVisualStyleBackColor = true;
+            this.startupAllRadio.CheckedChanged += new System.EventHandler(this.startupAllRadio_CheckedChanged);
+            // 
+            // startupOffRadio
+            // 
+            this.startupOffRadio.AutoSize = true;
+            this.startupOffRadio.Checked = true;
+            this.startupOffRadio.Location = new System.Drawing.Point(190, 207);
+            this.startupOffRadio.Name = "startupOffRadio";
+            this.startupOffRadio.Size = new System.Drawing.Size(39, 17);
+            this.startupOffRadio.TabIndex = 20;
+            this.startupOffRadio.TabStop = true;
+            this.startupOffRadio.Text = "Off";
+            this.startupOffRadio.UseVisualStyleBackColor = true;
+            this.startupOffRadio.CheckedChanged += new System.EventHandler(this.startupOffRadio_CheckedChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 530);
+            this.ClientSize = new System.Drawing.Size(400, 560);
             this.Controls.Add(this.logGroupBox);
             this.Controls.Add(this.optionsGroupBox);
             this.Controls.Add(this.statusPicture);
@@ -367,6 +419,10 @@
         private System.Windows.Forms.Button saveSettingsBtn;
         private System.Windows.Forms.RichTextBox logTextBox;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Label startupLabel;
+        private System.Windows.Forms.RadioButton startupOffRadio;
+        private System.Windows.Forms.RadioButton startupAllRadio;
+        private System.Windows.Forms.RadioButton startupCurrentRadio;
     }
 }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.ComponentModel;
 using static DoorBell.SoundControl;
 namespace DoorBell
 {
@@ -14,6 +13,11 @@ namespace DoorBell
         private RingTimer ringTimer = new RingTimer(2000);
         private UDP udp;
         private SoundControl soundControl = new SoundControl();
+        /// <summary>
+        /// Previous Mode gets set when user chooses either AllUsers or CurrentUser startup method
+        /// It is used to delete the right key when user chooses to turn off startup. 
+        /// </summary>
+        private StartupManager.Mode previousMode;
        
         #region Constructor
         public Presenter(IView mainWindow)
@@ -92,6 +96,8 @@ namespace DoorBell
 
             mainWindow.windowResized += WindowStateChanged;
             mainWindow.windowClosing += StopUDP;
+
+            mainWindow.startupSettingChanged += StartupRadioChanged;
         }
         private void AddMethodsToConnectionsEvents()
         {
@@ -417,6 +423,21 @@ namespace DoorBell
         public void ChangeNumberOfChecks(byte checks)
         {
             connTimer.ChangeNumberOfChecks(checks);
+        }
+        #endregion
+
+        #region Startup
+        private void StartupRadioChanged(object o, StartupEventArgs a)
+        {
+            if (a.modeSelected != StartupManager.Mode.Off)
+            {
+                StartupManager.AddToStartup(a.modeSelected);
+                previousMode = a.modeSelected;
+            }                
+            else
+            {
+                StartupManager.RemoveFromStartup(previousMode);
+            }           
         }
         #endregion
 

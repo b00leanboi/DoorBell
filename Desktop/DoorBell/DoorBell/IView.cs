@@ -40,6 +40,8 @@ namespace DoorBell
         event EventHandler<FormResizeArg> windowResized;
         event EventHandler windowClosing;
 
+        event EventHandler<StartupEventArgs> startupSettingChanged;
+
         void ShowMainWindow();
         void HideMainWindow();
         void ShowBalloonTip(int timeout);

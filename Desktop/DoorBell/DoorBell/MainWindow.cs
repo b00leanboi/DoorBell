@@ -229,6 +229,8 @@ namespace DoorBell
         public event EventHandler<FormResizeArg> windowResized;
         public event EventHandler windowClosing;
 
+        public event EventHandler<StartupEventArgs> startupSettingChanged;
+
         #endregion
         public MainWindow()
         {
@@ -313,6 +315,23 @@ namespace DoorBell
         public void HideMainWindow()
         {
             this.Hide();
+        }
+        private void startupCurrentRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (startupCurrentRadio.Checked)
+                startupSettingChanged.Invoke(this, new StartupEventArgs(StartupManager.Mode.CurrentUser));
+        }
+
+        private void startupAllRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (startupAllRadio.Checked)
+                startupSettingChanged.Invoke(this, new StartupEventArgs(StartupManager.Mode.AllUsers));
+        }
+
+        private void startupOffRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (startupOffRadio.Checked)
+                startupSettingChanged.Invoke(this, new StartupEventArgs(StartupManager.Mode.Off));
         }
         #endregion
     }
