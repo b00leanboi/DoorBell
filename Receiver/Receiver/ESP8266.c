@@ -37,6 +37,14 @@ uint8_t ESP_Initialize(void)
 	WaitForResponse();
 	ResetResponse();
 
+#if ESP_DHCP == 1
+	UART_SendString("AT+CWDHCP=2,1\r\n");
+#else
+	UART_SendString("AT+CWDHCP=2,0\r\n");
+#endif
+	WaitForResponse();
+	ResetResponse();
+
 	/*--- MODE ---*/
 #if ESP_WIFIMODE == 1
 	UART_SendString("AT+CWMODE=1\r\n"); //STATION MODE

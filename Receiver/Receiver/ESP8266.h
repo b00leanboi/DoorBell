@@ -118,7 +118,7 @@
  * ESP_DHCP 0 - Disabled
  * ESP_DHCP 1 - Enabled
 */
-#define ESP_DHCP 0
+#define ESP_DHCP 1
 
 /*
  * ESP_AUTOCONNECT 0 - Do not auto connect to Access Point

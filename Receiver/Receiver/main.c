@@ -19,7 +19,9 @@
 char data[120]; //Data received by RF12
 char crcErrorMsg[] = "CRC(CHECKSUM) ERROR";
 char conntestMsg[] = "conntest";
-uint8_t connCounter; //This will be used to sent connection test message (conntest
+uint8_t connCounter; //This will be used to sent connection test message (conntest)
+
+void RingBell(void);
 int main(void)
 {
 	_delay_ms(1000); //Waiting until ESP is ready
@@ -72,9 +74,9 @@ int main(void)
 
 		if(data > 0 && ret < 254)
 		{
+			RingBell();
 			ESP_Send(data,0);
 			data[16] = 0;
-			RingBell();
 		}
 		else if(!ret)
 		{
@@ -85,8 +87,8 @@ int main(void)
 	ret = RF_RxData(data);
 	if(ret)
 	{
-		ESP_Send(data,0);
 		RingBell();
+		ESP_Send(data,0);		
 	}
 	else
 	{
@@ -98,8 +100,8 @@ int main(void)
 void RingBell(void)
 {
 	PORTB |= (1<<BELL);
-	_delay_ms(1500);
-	PORTB ^= ~(1<<BELL);
+	_delay_ms(1000);
+	PORTB &= ~(1<<BELL);
 }
 // --- "ALIVE" LED INTERRUPT --- //
 ISR(TIMER1_OVF_vect) //4.5s on 14MHz clock
