@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#define LED0 PB0
+#define BELL PB1
 #include "uart.h"
 #include "rf.h"
 #include "ESP8266.h"
@@ -23,8 +23,8 @@ uint8_t connCounter; //This will be used to sent connection test message (connte
 int main(void)
 {
 	_delay_ms(1000); //Waiting until ESP is ready
-	// --- LED --- //
-	DDRB = (1<<LED0);
+
+	DDRB |= (1<<BELL);
 
 	// --- TIMER --- //
 	TCCR1B = (1<<CS12) | (1<<CS10); // clk/1024 prescaler
@@ -74,6 +74,7 @@ int main(void)
 		{
 			ESP_Send(data,0);
 			data[16] = 0;
+			RingBell();
 		}
 		else if(!ret)
 		{
@@ -85,15 +86,23 @@ int main(void)
 	if(ret)
 	{
 		ESP_Send(data,0);
+		RingBell();
 	}
 	else
+	{
 		ESP_Send(crcErrorMsg, 0);
+	}
 #endif
 	}
+}
+void RingBell(void)
+{
+	PORTB |= (1<<BELL);
+	_delay_ms(1500);
+	PORTB ^= ~(1<<BELL);
 }
 // --- "ALIVE" LED INTERRUPT --- //
 ISR(TIMER1_OVF_vect) //4.5s on 14MHz clock
 {
-	PORTB ^= (1<<LED0);
 	connCounter++;	
 }
