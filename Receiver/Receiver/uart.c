@@ -77,6 +77,11 @@ ISR(USART_RX_vect)
 			message = &okMessage;
 			messageIndex++;
 		}
+		else if(character == '>')
+		{
+			message = &inputMessage;
+			messageIndex++;
+		}
 	}
 	else
 	{
