@@ -8,7 +8,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#define LED0 PB0
+#define BELL PB1
 #include "uart.h"
 #include "rf.h"
 #include "ESP8266.h"
@@ -19,12 +19,14 @@
 char data[120]; //Data received by RF12
 char crcErrorMsg[] = "CRC(CHECKSUM) ERROR";
 char conntestMsg[] = "conntest";
-uint8_t connCounter; //This will be used to sent connection test message (conntest
+uint8_t connCounter; //This will be used to sent connection test message (conntest)
+
+void RingBell(void);
 int main(void)
 {
 	_delay_ms(1000); //Waiting until ESP is ready
-	// --- LED --- //
-	DDRB = (1<<LED0);
+
+	DDRB |= (1<<BELL);
 
 	// --- TIMER --- //
 	TCCR1B = (1<<CS12) | (1<<CS10); // clk/1024 prescaler
@@ -72,6 +74,7 @@ int main(void)
 
 		if(data > 0 && ret < 254)
 		{
+			RingBell();
 			ESP_Send(data,0);
 			data[16] = 0;
 		}
@@ -84,16 +87,24 @@ int main(void)
 	ret = RF_RxData(data);
 	if(ret)
 	{
-		ESP_Send(data,0);
+		RingBell();
+		ESP_Send(data,0);		
 	}
 	else
+	{
 		ESP_Send(crcErrorMsg, 0);
+	}
 #endif
 	}
+}
+void RingBell(void)
+{
+	PORTB |= (1<<BELL);
+	_delay_ms(1000);
+	PORTB &= ~(1<<BELL);
 }
 // --- "ALIVE" LED INTERRUPT --- //
 ISR(TIMER1_OVF_vect) //4.5s on 14MHz clock
 {
-	PORTB ^= (1<<LED0);
 	connCounter++;	
 }

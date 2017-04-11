@@ -14,7 +14,6 @@
 #include "ESP8266.h"
 
 volatile ESP_RESP ESP_Response;
-extern uint8_t bufferIndex; //Exists in "uart.h"
 
 /************************************************************************/
 /*                        INITIALIZATION                                */
@@ -23,7 +22,6 @@ uint8_t ESP_Initialize(void)
 {
 	/*--- Checking communication between microcontroller and ESP ---*/
 	ResetResponse();
-	bufferIndex = 0;
 	ESP_AT();
 	WaitForResponse();
 	ResetResponse();
@@ -33,6 +31,14 @@ uint8_t ESP_Initialize(void)
 	UART_SendString("ATE0\r\n");
 #else
 	UART_SendString("ATE1\r\n");
+#endif
+	WaitForResponse();
+	ResetResponse();
+
+#if ESP_DHCP == 1
+	UART_SendString("AT+CWDHCP=2,1\r\n");
+#else
+	UART_SendString("AT+CWDHCP=2,0\r\n");
 #endif
 	WaitForResponse();
 	ResetResponse();
@@ -50,6 +56,8 @@ uint8_t ESP_Initialize(void)
 
 	/*--- CONNECTING TO WIFI ---*/
 #if ESP_WIFIMODE == 1 || ESP_WIFIMODE  == 3
+#ifdef ESP_APNAME
+#ifdef ESP_APPASSWORD
 	ESP_Response.ERROR = 0;
 	
 	UART_SendString("AT+CWJAP=\"");
@@ -67,6 +75,13 @@ uint8_t ESP_Initialize(void)
 	{
 		ESP_Response.OK = 0;
 	}
+#else
+	#error Undefined PASSWORD
+#endif
+#else
+	#error Undefined SSID
+#endif
+
 #endif /* ESP_WIFIMODE == 1 || ESP_WIFIMODE == 3 */
 	
 	/*--- SETTING UP ACCESS POINT ---*/

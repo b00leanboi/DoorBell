@@ -86,8 +86,6 @@
 	 * ESP_APNAME "ab,c" will become "ab/,c"
 	 * ESP_APNAME "ab"c" will become "ab/"c"
 	*/
-	#define ESP_APNAME ""
-	#define ESP_APPASSWORD ""
 #endif
 
 #if ESP_WIFIMODE == 2 || ESP_WIFIMODE == 3
@@ -118,7 +116,7 @@
  * ESP_DHCP 0 - Disabled
  * ESP_DHCP 1 - Enabled
 */
-#define ESP_DHCP 0
+#define ESP_DHCP 1
 
 /*
  * ESP_AUTOCONNECT 0 - Do not auto connect to Access Point
@@ -149,16 +147,13 @@
 /************************************************************************/
 /*                              RESPONSES                               */
 /************************************************************************/
-typedef union
+typedef struct
 {
-	struct
-	{
-		uint8_t OK:1;
-		uint8_t ERROR:1;
-		uint8_t INPUT:1;
-		uint8_t CONNECTED:1;
-	};
-} ESP_RESP;
+	char OK;
+	char ERROR;
+	char INPUT;
+	char CONNECTED;
+}ESP_RESP;
 
 extern volatile ESP_RESP ESP_Response;
 /************************************************************************/

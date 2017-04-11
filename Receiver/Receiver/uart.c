@@ -10,8 +10,21 @@
 #include <stdlib.h>
 #include "ESP8266.h"
 
-volatile char buffer[100]; //Buffer for incoming data of UART
-volatile uint8_t bufferIndex = 0;
+typedef struct
+{
+	char characters[7]; //Currently the longest response that is interpreted is ERROR
+	uint8_t* fullyReceived; //This will be used to change different statuses
+}Message;
+
+Message okMessage = {{'O', 'K', '\r', '\n'}, &ESP_Response.OK};
+Message errorMessage = {{'E', 'R', 'R', 'O', 'R', '\r','\n'}, &ESP_Response.ERROR};
+Message inputMessage = {{'>', ' '}, &ESP_Response.INPUT};
+
+volatile unsigned char messageIndex;
+volatile Message *message;
+
+//volatile char buffer[100]; //Buffer for incoming data of UART
+//volatile uint8_t bufferIndex = 0;
 
 void UART_Initlialise(unsigned int ubrr)
 {
@@ -44,46 +57,83 @@ void UART_SendString(char *string)
 /* --- RECEIVING --- */
 char UART_ReceiveChar(void)
 {
-	while(!(UCSR0A & (1<<RXC0))); //EMPTY LOOP - WAITING UNTILL DATA IS RECEIVED
+	while(!(UCSR0A & (1<<RXC0))); //EMPTY LOOP - WAITING UNTIL DATA IS RECEIVED
 
 	return UDR0;
 }
 ISR(USART_RX_vect)
 {
-	uint8_t receivedByte = UDR0;
-	buffer[bufferIndex] = receivedByte;
-	if(receivedByte == '\n')
+	char character = UDR0;
+
+	if(messageIndex == 0)
 	{
-		if(buffer[0] == 'O' && buffer[1] == 'K')
+		if(character == 'E')
 		{
-			ESP_Response.OK = 1;
+			message = &errorMessage;
+			messageIndex++;
 		}
-		else if(buffer[0] == 'E' && buffer[1] == 'R' && buffer[4] == 'R')
+		else if(character == 'O')
 		{
-			ESP_Response.ERROR = 1;
+			message = &okMessage;
+			messageIndex++;
 		}
-		else if(buffer[1] == ',' && buffer[3] == 'O')
+		else if(character == '>')
 		{
-			ESP_Connections++;
+			message = &inputMessage;
+			messageIndex++;
 		}
-		else if(buffer[1] == ',' && buffer[3] == 'L')
-		{
-			ESP_Connections--;
-		}
-		else if(buffer[0] == 'S' && buffer[5] == 'O')
-			ESP_Response.OK;
-		bufferIndex = 0;
-	}
-	else if(receivedByte == ' ')
-	{
-		if(buffer[0] == '>')
-		{
-			ESP_Response.INPUT = 1;
-			bufferIndex = 0;
-		}	
 	}
 	else
 	{
-		bufferIndex++;
+		if(character == message->characters[messageIndex])
+		{
+			messageIndex++;	
+				
+			if(message->characters[messageIndex] == '\0')
+			{
+				*message->fullyReceived = 1;
+				messageIndex = 0;
+			}
+		}
+		else
+		{
+			messageIndex = 0;
+		}
 	}
+
+	//buffer[bufferIndex] = receivedByte;
+	//if(receivedByte == '\n')
+	//{
+		//if(buffer[0] == 'O' && buffer[1] == 'K')
+		//{
+			//ESP_Response.OK = 1;
+		//}
+		//else if(buffer[0] == 'E' && buffer[1] == 'R' && buffer[4] == 'R')
+		//{
+			//ESP_Response.ERROR = 1;
+		//}
+		//else if(buffer[1] == ',' && buffer[3] == 'O')
+		//{
+			//ESP_Connections++;
+		//}
+		//else if(buffer[1] == ',' && buffer[3] == 'L')
+		//{
+			//ESP_Connections--;
+		//}
+		//else if(buffer[0] == 'S' && buffer[5] == 'O')
+			//ESP_Response.OK;
+		//bufferIndex = 0;
+	//}
+	//else if(receivedByte == ' ')
+	//{
+		//if(buffer[0] == '>')
+		//{
+			//ESP_Response.INPUT = 1;
+			//bufferIndex = 0;
+		//}	
+	//}
+	//else
+	//{
+		//bufferIndex++;
+	//}
 }
